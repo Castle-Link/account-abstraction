@@ -1,39 +1,49 @@
-# <h1 align="center"> Forge Template </h1>
+# <h1> Account abstraction by Castle </h1>
 
-**Template repository for getting started quickly with Foundry projects**
-
-![Github Actions](https://github.com/foundry-rs/forge-template/workflows/CI/badge.svg)
+**Repository for Castle's Account Abstraction Smart contract Implementation**
 
 ## Getting Started
 
-Click "Use this template" on [GitHub](https://github.com/foundry-rs/forge-template) to create a new repository with this repo as the initial state.
+### Setup
 
-Or, if your repo already exists, run:
+1. Install [Foundry](https://github.com/foundry-rs/foundry).
+2. Get an Alchemy API key.
+3. Create a .env file in the root of this directory with the following.
+
+```
+ALCHEMY_API_KEY=sample-key
+RPC_URL=https://eth-goerli.g.alchemy.com/v2/
+```
+
+### Running Foundry tests
+
+1. Create two terminals.
+2. First terminal will run `anvil`. Run the following script.
+
 ```sh
-forge init
-forge build
-forge test
+source .env # This will import all of your environment variables in the terminal
+anvil --fork-url $RPC_URL$ALCHEMY_API_KEY # This will create a local Ethereum node that will be forked from the network of your choosing
 ```
 
-## Writing your first test
+3. In the second terminal, you can run `forge install`.
+4. To kick off your tests, run `forge test --fork-url http://localhost:8545`.
 
-All you need is to `import forge-std/Test.sol` and then inherit it from your test contract. Forge-std's Test contract comes with a pre-instatiated [cheatcodes environment](https://book.getfoundry.sh/cheatcodes/), the `vm`. It also has support for [ds-test](https://book.getfoundry.sh/reference/ds-test.html)-style logs and assertions. Finally, it supports Hardhat's [console.log](https://github.com/brockelmore/forge-std/blob/master/src/console.sol). The logging functionalities require `-vvvv`.
+## Notes
 
-```solidity
-pragma solidity 0.8.10;
+Whenever you install new libraries using Foundry, make sure to update your remappings.txt file by running:
 
-import "forge-std/Test.sol";
-
-contract ContractTest is Test {
-    function testExample() public {
-        vm.roll(100);
-        console.log(1);
-        emit log("hi");
-        assertTrue(true);
-    }
-}
+```sh
+forge remappings > remappings.txt
 ```
 
-## Development
+This is required because we use hardhat-preprocessor and the remappings.txt file to allow Hardhat to resolve libraries you install with Foundry.
 
-This project uses [Foundry](https://getfoundry.sh). See the [book](https://book.getfoundry.sh/getting-started/installation.html) for instructions on how to install and use Foundry.
+## Definitions
+
+### Foundry
+
+#### Anvil
+
+#### Cast
+
+#### Forge
