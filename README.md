@@ -47,3 +47,8 @@ This is required because we use hardhat-preprocessor and the remappings.txt file
 #### Cast
 
 #### Forge
+
+## Latest
+
+1. Create2 address is not matching the deployed address... see what's going on with the getAddress function
+   (this is true for both the contract we created and the one that is created by eth-infinitism).
